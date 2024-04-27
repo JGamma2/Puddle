@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#page {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#workspace {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    background-color: #382616;
+    height: 30vh;
+    width: 75vw;
+    flex-wrap: wrap;
+    border-top: solid;
+    border-top-color: #45f107;
+    border-top-width: 1px;
+}
+
+#wuddleFace {
+    width: 25vh;
+    height: 25vh;
+    /*visibility: hidden*/
+}
+
+#bench {
+    height: 25vh;
+    width: 25vh;
+}
+
+#mine {
+    height: 25vh;
+    width: 25vh;
+}
+
+#castle {
+    background-color: #3d3d3d;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    width: 75vw;
+    height: 70vh;
+
+}
+
+#menu {
+    background-color: rgb(19, 19, 19);
+    margin: 0;
+    padding: 0;
+    width: 25vw;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    border-left: solid;
+    border-left-color: #45f107;
+    border-left-width: 1px;
+}
