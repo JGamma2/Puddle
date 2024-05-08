@@ -84,7 +84,8 @@ const menu = {
           newOption.style.margin = "auto";
           newOption.style.justifyContent = "center";
           let iText = document.createElement("p")
-          iText.innerText = `${option.optionID}: ${option.amount}`;
+          //Fix line below, call corretc inventroy stuff, yea. Oh and above line. oID is goofy, amounts are wierd too.
+          iText.innerText = `${option.slotName}: ${option.amount()}`;
           iText.style.textAlign = "center";
           newOption.appendChild(iText);
           if (option.optionID) {
@@ -180,24 +181,27 @@ const menu = {
     },
 
     dirtBox: {
-    optionID: "Dirt",
-    amount: inventory.dirt,
+    slotName: "Dirt",
+    optionID: "dirt",
     inventorySlot: true,
     ignore: false,
+    amount: function() {return inventory.dirt},
     },
 
     bricksBox: {
-    optionID: "Bricks",
-    amount: inventory.bricks,
+    slotName: "Bricks",
+    optionID: "bricks",
     inventorySlot: true,
     ignore: false,
+    amount: function() {return inventory.bricks},
     },
 
     beamsBox: {
-    optionID: "Beams",
-    amount: inventory.beams,
+    slotName: "Beams",
+    optionID: "beams",
     inventorySlot: true,
     ignore: false,
+    amount: function() {return inventory.beams},
     },
 
   },
@@ -205,8 +209,10 @@ const menu = {
 };
 
 const wuddleTasks = {
+
   curretIntervalID: null,
   currentTask: null,
+
   mine: function() {
     if (this.currentIntervalID !== null && this.currentTask !== "mine") {
       clearInterval(this.curretIntervalID);
@@ -220,14 +226,14 @@ const wuddleTasks = {
   mineCallback: function() {
     inventory.dirt = inventory.dirt + 1;
     if (menu.currentMenu == "inventoryMenu") {
-    menu.inventoryMenu.dirtBox.amount = inventory.dirt;
-    document.getElementById("Dirt").removeChild(document.getElementById("Dirt").lastChild)
+    document.getElementById("dirt").removeChild(document.getElementById("dirt").lastChild)
     let iText = document.createElement("p")
-    iText.innerText = `Dirt: ${menu.inventoryMenu.dirtBox.amount}`;
+    iText.innerText = `Dirt: ${inventory.dirt}`;
     iText.style.textAlign = "center";
-    document.getElementById("Dirt").appendChild(iText);
+    document.getElementById("dirt").appendChild(iText);
     };
   },
+
   makeBricks: function() {
     if (this.currentIntervalID !== null && this.currentTask !== "makeBricks") {
       clearInterval(this.curretIntervalID);
@@ -242,18 +248,16 @@ const wuddleTasks = {
     inventory.bricks = inventory.bricks + 1;
     inventory.dirt = inventory.dirt - 5;
     if (menu.currentMenu == "inventoryMenu") {
-    menu.inventoryMenu.bricksBox.amount = inventory.bricks;
-    document.getElementById("Bricks").removeChild(document.getElementById("Bricks").lastChild)
+    document.getElementById("bricks").removeChild(document.getElementById("bricks").lastChild)
     let iText = document.createElement("p");
-    iText.innerText = `Bricks: ${menu.inventoryMenu.bricksBox.amount}`;
+    iText.innerText = `Bricks: ${inventory.bricks}`;
     iText.style.textAlign = "center";
-    document.getElementById("Bricks").appendChild(iText);
-    menu.inventoryMenu.dirtBox.amount = inventory.dirt;
-    document.getElementById("Dirt").removeChild(document.getElementById("Dirt").lastChild)
+    document.getElementById("bricks").appendChild(iText);
+    document.getElementById("dirt").removeChild(document.getElementById("dirt").lastChild)
     let i2Text = document.createElement("p")
-    i2Text.innerText = `Dirt: ${menu.inventoryMenu.dirtBox.amount}`;
+    i2Text.innerText = `Dirt: ${inventory.dirt}`;
     i2Text.style.textAlign = "center";
-    document.getElementById("Dirt").appendChild(i2Text);
+    document.getElementById("dirt").appendChild(i2Text);
     };
     } else if (inventory.dirt < 5) {
       document.getElementById("mine").style.borderColor = "red";
@@ -263,4 +267,9 @@ const wuddleTasks = {
     };
   },
 
+
 };
+
+const tower = {
+
+}
