@@ -50,14 +50,35 @@ body {
     width: 20vh;
 }
 
-#castle {
+#construction {
+    height: 25vh;
+    width: 25vh;
+}
+
+#castleArea {
     background-color: #3d3d3d;
     margin: 0;
     padding: 0;
     position: relative;
     width: 75vw;
     height: 70vh;
+    justify-content: center;
+    justify-items: center;
+    
 
+}
+
+#castle {
+    background-color: #3e3e3e;
+    margin: auto;
+    padding: 0;
+    position: relative;
+    height: 70vh;
+    width: 40vw;
+    display: grid;
+    gap: 0px;
+    grid-template-columns: repeat(10, 10%);
+    grid-template-rows: repeat(20, 5%);
 }
 
 #menu {
@@ -69,7 +90,7 @@ body {
     padding: 0;
     width: 25vw;
     height: 100vh;
-    position: absolute;
+    position: relative;
     right: 0;
     border-left: solid;
     border-left-color: #45f107;

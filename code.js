@@ -169,9 +169,44 @@ const menu = {
 
   },
 
+  constructionMenu: {
+
+    menuID: {menuID: "constructionMenu", ignore: true},
+  
+    descriptionBox: {
+    text: "Construct the tower from forged bricks.", 
+    title: null,
+    ignore: false,
+    inventorySlot: false,
+    },
+
+    placeBricksActionBox: {
+    text: "Place bricks for the castle.",
+    title: "Place bricks.",
+    ignore: false,
+    inventorySlot: false,
+    clickAction: function() {
+      castle.renderNewBlock("basic");
+    },
+    },
+
+  },
+
   inventoryMenu: {
 
     menuID: {menuID: "inventoryMenu", ignore: true},
+
+    /*
+    InventorySlot: function(oslotName, ooptionID, oinventorySlot, oignore, oamount) {
+      this.slotName = oslotName;
+      this.optionID = ooptionID;
+      this.inventorySlot = oinventorySlot;
+      this.ignore = oignore;
+      this.amount = oamount;
+      return this;
+
+    },
+    */
   
     descriptionBox: {
     text: "Hot inventory made by the hot developer.", 
@@ -180,7 +215,9 @@ const menu = {
     inventorySlot: false,
     },
 
-    dirtBox: {
+    dirtBox: /*menu.inventoryMenu.InventorySlot("Dirt", "dirt", true, false, function() {return inventory.dirt}),*/
+
+    {
     slotName: "Dirt",
     optionID: "dirt",
     inventorySlot: true,
@@ -188,7 +225,9 @@ const menu = {
     amount: function() {return inventory.dirt},
     },
 
-    bricksBox: {
+    bricksBox: /*menu.inventoryMenu.InventorySlot("Bricks", "bricks", true, false, function() {return inventory.bricks}),*/
+    
+    {
     slotName: "Bricks",
     optionID: "bricks",
     inventorySlot: true,
@@ -196,7 +235,9 @@ const menu = {
     amount: function() {return inventory.bricks},
     },
 
-    beamsBox: {
+    beamsBox: /*menu.inventoryMenu.InventorySlot("Beams", "beams", true, false, function() {return inventory.beams}),*/
+    
+    {
     slotName: "Beams",
     optionID: "beams",
     inventorySlot: true,
@@ -219,7 +260,7 @@ const wuddleTasks = {
     };
     if (this.currentTask !== "mine") {
     this.currentTask = "mine";
-    this.curretIntervalID = setInterval(this.mineCallback, 5000);
+    this.curretIntervalID = setInterval(this.mineCallback, 1000);
     };
     
   },
@@ -240,7 +281,7 @@ const wuddleTasks = {
     };
     if (this.currentTask !== "makeBricks") {
       this.currentTask = "makeBricks";
-      this.curretIntervalID = setInterval(this.makeBricksCallback, 10000);
+      this.curretIntervalID = setInterval(this.makeBricksCallback, 3000);
       };
   },
   makeBricksCallback: function() {
@@ -270,6 +311,51 @@ const wuddleTasks = {
 
 };
 
-const tower = {
 
-}
+const castle = {
+
+  nextBlocksPosition: [0,0],
+
+  canRenderNewBlock: function(blockType) {
+    if (inventory.bricks >= 3) {
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  renderNewBlock: function(blockType) {
+    //if (castle.canRenderNewBlock(blockType)) {
+    let newBlock = document.createElement("div");
+    newBlock.style.borderStyle = "solid";
+    newBlock.style.borderWidth = "1px";
+    if (blockType = "basic") {
+      newBlock.style.backgroundColor = "#51523f";
+      newBlock.style.borderColor = "#515111";
+    };
+    newBlock.style.margin = "0";
+    if (this.nextBlocksPosition[0] === 10) {
+      this.nextBlocksPosition[0] = 0;
+      this.nextBlocksPosition[1]++;
+    }
+    newBlock.style.gridColumn = `${this.nextBlocksPosition[0]+1}`;
+    this.nextBlocksPosition[0]++;
+    newBlock.style.gridRow = `-${this.nextBlocksPosition[1]+2}`;
+
+    /*
+    inventory.bricks = inventory.bricks-3;
+    document.getElementById("bricks").removeChild(document.getElementById("bricks").lastChild)
+    let iText = document.createElement("p");
+    iText.innerText = `Bricks: ${inventory.bricks}`;
+    iText.style.textAlign = "center";
+    document.getElementById("bricks").appendChild(iText);
+    */
+
+    document.getElementById("castle").appendChild(newBlock);
+
+    //let tornado = false;
+
+    //};
+  },
+
+};
