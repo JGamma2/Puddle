@@ -84,7 +84,6 @@ const menu = {
           newOption.style.margin = "auto";
           newOption.style.justifyContent = "center";
           let iText = document.createElement("p")
-          //Fix line below, call corretc inventroy stuff, yea. Oh and above line. oID is goofy, amounts are wierd too.
           iText.innerText = `${option.slotName}: ${option.amount()}`;
           iText.style.textAlign = "center";
           newOption.appendChild(iText);
@@ -325,7 +324,7 @@ const castle = {
   },
 
   renderNewBlock: function(blockType) {
-    //if (castle.canRenderNewBlock(blockType)) {
+    if (castle.canRenderNewBlock(blockType)) {
     let newBlock = document.createElement("div");
     newBlock.style.borderStyle = "solid";
     newBlock.style.borderWidth = "1px";
@@ -342,20 +341,13 @@ const castle = {
     this.nextBlocksPosition[0]++;
     newBlock.style.gridRow = `-${this.nextBlocksPosition[1]+2}`;
 
-    /*
-    inventory.bricks = inventory.bricks-3;
-    document.getElementById("bricks").removeChild(document.getElementById("bricks").lastChild)
-    let iText = document.createElement("p");
-    iText.innerText = `Bricks: ${inventory.bricks}`;
-    iText.style.textAlign = "center";
-    document.getElementById("bricks").appendChild(iText);
-    */
+    inventory.bricks = inventory.bricks - 3;
 
     document.getElementById("castle").appendChild(newBlock);
 
-    //let tornado = false;
 
-    //};
+
+    };
   },
 
 };
