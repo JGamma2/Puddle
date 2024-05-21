@@ -78,7 +78,7 @@ body {
     display: grid;
     gap: 0px;
     grid-template-columns: repeat(10, 10%);
-    grid-template-rows: repeat(20, 5%);
+    grid-template-rows: repeat(50, 2%);
 }
 
 #menu {
