@@ -347,6 +347,11 @@ const castle = {
 
 
 
+    } else {
+      document.getElementById("bench").style.color = "red";
+      document.getElementById("bench").style.borderStyle = "solid";
+      document.getElementById("bench").style.borderWidth = "2px";
+      setTimeout(menu.clearBorder, 1000, "bench");
     };
   },
 

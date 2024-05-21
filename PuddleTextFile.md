@@ -17,3 +17,6 @@ Basic ending.
 v1.0.0.0.
 Full ending.
 Full visual revamp.
+
+
+Nah it's done.
